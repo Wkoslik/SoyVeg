@@ -15,7 +15,7 @@ app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
-app.use(helmet);
+app.use(helmet());
 
 app.use(session({ //because of how this works, we have access to this session on ANY request
   secret: process.env.SESSION_SECRET, //should be an ENV variable
@@ -42,13 +42,37 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/profile', isLoggedIn, (req, res) => {
+app.get('/profile', /*isLoggedIn,*/ (req, res) => {
   //console.log(req.session.testVar);
   res.render('profile');
 });
 
+app.get('/search', /*isLoggedIn,*/ (req,res)=>{
+  res.render('search');
+});
+
+app.get('/faveingredients', /*isLoggedIn,*/ (req,res)=>{
+  res.render('faveingredients');
+});
+
+app.get('/faverecipes', /*isLoggedIn,*/ (req,res)=>{
+  res.render('faverecipes');
+});
+
+app.get('/dislikeingredients', /*isLoggedIn,*/ (req,res)=>{
+  res.render('dislikeingredients');
+});
+
+app.get('/dislikerecipes', /*isLoggedIn,*/ (req,res)=>{
+  res.render('dislikerecipes');
+});
+
+
+
 app.use('/auth', require('./routes/auth'));
-//app.use('/dino', isLoggedIn, require('./routes/dino')); //this auth locks an entire route
+//app.use('/dino', /*isLoggedIn,*/ require('./routes/dino')); //this auth locks an entire route
+app.use('/search', /*isLoggedIn,*/ require('./routes/search'));
+app.use('/results', /*isLoggedIn,*/ require('./routes/results'))
 
 var server = app.listen(process.env.PORT || 3000, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
 

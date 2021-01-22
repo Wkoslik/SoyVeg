@@ -1,3 +1,12 @@
 <h2>Homepage</h2>
 
-<%= currentUser ? currentUser.name : 'There is no user' %>
+<%= currentUser ? `Welcome ${currentUser.name}!` : 'There is no user' %>
+
+
+<ul>
+    <li><a href='/search'>Search</a></li>
+    <li><a href='/faveingredients'>Fave Ingredients</a></li>
+    <li><a href='/faverecipes'>Fave Recipes</a></li>
+    <li><a href='/dislikeingredients'>Ew Ingredients</a></li>
+    <li><a href='/dislikerecipes'>Ew Ingredients</a></li>
+</ul>
