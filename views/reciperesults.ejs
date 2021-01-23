@@ -4,6 +4,6 @@
 
 <ul>
     <% recipeResults.forEach(recipe =>{%>
-    <li><%=recipe.recipe.label%></li>
+    <li><img src="<%= recipe.recipe.image %>"> <%=recipe.recipe.label%></li>
     <%})%>
 </ul>
