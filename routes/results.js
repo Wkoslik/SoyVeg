@@ -28,7 +28,8 @@ router.get('/', (req, res) => {
                 //             "foodId": foodResults[0].food.foodId
                 //         }
                 //     ]
-                // }
+                //  }
+                //res.send(foodResults);
                 res.render('results/foodresults', { foodResults });
                 // foodResults.forEach(food => {
                 //     //BLOWS OUT THE LIMITS, need to figure out workaround
@@ -52,10 +53,47 @@ router.get('/', (req, res) => {
         axios.get(`https://api.edamam.com/search?q=${searchTerm}&app_id=${process.env.RECIPE_ID}&app_key=${process.env.RECIPE_KEY}&health=vegan&health=vegetarian`)
             .then((response) => {
                 let recipeResults = response.data.hits
-                //res.send(recipeResults)
-                res.render('results/reciperesults', { recipeResults })
+                res.send(recipeResults)
+                //res.render('results/reciperesults', { recipeResults })
             }).catch(err => console.log(err));
     }
 })
+
+router.get('/:id', (req, res) => {
+    // let searchTerm = req.params.display
+    // let switchSpacesRegex = /\s/g;
+    // searchTerm = searchTerm.replace(switchSpacesRegex, function (x) {
+    //     return x = '%20';
+    // })
+    //res.send(req.params);
+    //console.log(searchTerm);
+    // let foodId2 = req.params.id;
+    // res.send(req.query);
+    // //let foodId = '&foodId=food_bpfy0kabklpd7raf3tah4bf0s5hp';
+    // let url = `https://api.edamam.com/api/food-database/v2/parser?ingr=${searchTerm}&app_id=${process.env.INGREDIENT_ID}&app_key=${process.env.INGREDIENT_KEY}`;
+    // res.send(id);
+    // axios.get(url)
+    // .then(response =>{
+    //     let 
+    //     let items = response.data.hints;
+    //     const chosenOne = items.filter(item => item.food.foodId === 'food_bpfy0kabklpd7raf3tah4bf0s5hp');
+    //     console.log(chosenOne);
+    //     res.send(chosenOne);
+    // })
+    axios.post(`https://api.edamam.com/api/food-database/v2/nutrients?app_id=${process.env.INGREDIENT_ID}&app_key=${process.env.INGREDIENT_KEY}`, {
+        "ingredients": [
+            {
+                "quantity": 1,
+                "measureURI": req.query.uri,
+                "foodId": req.query.foodId
+            }
+        ]
+    }
+    )
+    .then(response =>{
+        res.send(response.data)
+    })
+})
+
 
 module.exports = router;

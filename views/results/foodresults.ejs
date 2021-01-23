@@ -3,13 +3,20 @@
 <!--NEED TO INCLUDE SECTION TALKING ABOUT USER PREFERENCE-->
 
 <ul>
-    <% foodResults.forEach(food =>{ %>
+    <% foodResults.forEach((food) =>{ %>
         <% let displayFood = food.food.label %>
         <% displayFood = displayFood.toLowerCase() %>
         <% let regex = /(\b[a-z](?!\s))/g; %>
         <% displayFood = displayFood.replace(regex, function(x){ %>
             <% return x.toUpperCase(); %>
         <% }); %>
-        <li><%= displayFood %>  </li>
+        <li><form method="GET" action='/results/<%= food.food.foodId %> '>
+        <input type="hidden" name="uri" value='<%= food.measures[0].uri %>'>
+        <input type="hidden" name="foodId" value="<%= food.food.foodId %>">
+        <input type="hidden" name="quantity" value='1'>
+        <input type="submit" name="foodLabel" value="<%= displayFood %>">
+        </form>
+        </li>
     <% }) %>
 </ul>
+

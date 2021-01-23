@@ -3,7 +3,7 @@
 <!--NEED TO INCLUDE SECTION TALKING ABOUT USER PREFERENCE-->
 
 <ul>
-    <% recipeResults.forEach(recipe =>{%>
-    <li><img src="<%= recipe.recipe.image %>"> <%=recipe.recipe.label%></li>
+    <% recipeResults.forEach(recipe, id =>{%>
+    <li><img src="<%= recipe.recipe.image %>"> <a href="<%= recipe.recipe.id %> "<%=recipe.recipe.label%></li>
     <%})%>
 </ul>
