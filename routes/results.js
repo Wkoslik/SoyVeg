@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
                 //         }
                 //     ]
                 // }
-                res.render('results', { foodResults });
+                res.render('foodresults', { foodResults });
                 // foodResults.forEach(food => {
                 //     //BLOWS OUT THE LIMITS, need to figure out workaround
                 //     axios.post(`https://api.edamam.com/api/food-database/v2/nutrients?app_id=${process.env.INGREDIENT_ID}&app_key=${process.env.INGREDIENT_KEY}`, {
@@ -47,12 +47,13 @@ router.get('/', (req, res) => {
                 // })
                 // }
                 // )
-            })
+            }).catch(err => console.log(err));
     } else { //IF SEARCHING FOR RECIPE
         axios.get(`https://api.edamam.com/search?q=${searchTerm}&app_id=${process.env.RECIPE_ID}&app_key=${process.env.RECIPE_KEY}&health=vegan&health=vegetarian`)
             .then((response) => {
-                res.send(response.data);
-            })
+                let recipeResults = response.data.hits
+                res.render('reciperesults', { recipeResults })
+            }).catch(err => console.log(err));
     }
 })
 
