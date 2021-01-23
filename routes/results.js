@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
                 //         }
                 //     ]
                 // }
-                res.render('foodresults', { foodResults });
+                res.render('results/foodresults', { foodResults });
                 // foodResults.forEach(food => {
                 //     //BLOWS OUT THE LIMITS, need to figure out workaround
                 //     axios.post(`https://api.edamam.com/api/food-database/v2/nutrients?app_id=${process.env.INGREDIENT_ID}&app_key=${process.env.INGREDIENT_KEY}`, {
@@ -53,7 +53,7 @@ router.get('/', (req, res) => {
             .then((response) => {
                 let recipeResults = response.data.hits
                 //res.send(recipeResults)
-                res.render('reciperesults', { recipeResults })
+                res.render('results/reciperesults', { recipeResults })
             }).catch(err => console.log(err));
     }
 })

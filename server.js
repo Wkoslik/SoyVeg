@@ -52,27 +52,26 @@ app.get('/search', /*isLoggedIn,*/ (req,res)=>{
 });
 
 app.get('/faveingredients', /*isLoggedIn,*/ (req,res)=>{
-  res.render('faveingredients');
+  res.render('fave/faveingredients');
 });
 
 app.get('/faverecipes', /*isLoggedIn,*/ (req,res)=>{
-  res.render('faverecipes');
+  res.render('fave/faverecipes');
 });
 
 app.get('/dislikeingredients', /*isLoggedIn,*/ (req,res)=>{
-  res.render('dislikeingredients');
+  res.render('dislike/dislikeingredients');
 });
 
 app.get('/dislikerecipes', /*isLoggedIn,*/ (req,res)=>{
-  res.render('dislikerecipes');
+  res.render('dislike/dislikerecipes');
 });
 
 
 
 app.use('/auth', require('./routes/auth'));
 //app.use('/dino', /*isLoggedIn,*/ require('./routes/dino')); //this auth locks an entire route
-app.use('/search', /*isLoggedIn,*/ require('./routes/search'));
-app.use('/results', /*isLoggedIn,*/ require('./routes/results'))
+app.use('/results', /*isLoggedIn,*/ require('./routes/results'));
 
 var server = app.listen(process.env.PORT || 3000, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
 
