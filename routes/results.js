@@ -28,23 +28,24 @@ router.get('/', (req, res) => {
                         }
                     ]
                 }
-                
+
                 foodResults.forEach(food => {
-                    let ingObject = {
+                    //BLOWS OUT THE LIMITS, need to figure out workaround
+                    axios.post(`https://api.edamam.com/api/food-database/v2/nutrients?app_id=${process.env.INGREDIENT_ID}&app_key=${process.env.INGREDIENT_KEY}`, {
                         "ingredients": [
                             {
                                 "quantity": 1,
-                                "measureURI": food.measures[8],
+                                "measureURI": food.measures[0].uri,
                                 "foodId": food.food.foodId
                             }
                         ]
                     }
-                    // axios.post(`https://api.edamam.com/api/food-database/v2/nutrients?app_id=${process.env.INGREDIENT_ID}&app_key=${process.env.INGREDIENT_KEY}`, ingObject
-                    // )
-                    // .then(response =>{
-                    //     res.send(foodResults, response);
-                    // })
-                });
+                    )
+                        .then(response => {
+                            res.send(response.data);
+                        })
+                }
+                )
             })
     } else { //IF SEARCHING FOR RECIPE
         axios.get(`https://api.edamam.com/search?q=${searchTerm}&app_id=${process.env.RECIPE_ID}&app_key=${process.env.RECIPE_KEY}&health=vegan&health=vegetarian`)
