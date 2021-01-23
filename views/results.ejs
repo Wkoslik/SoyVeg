@@ -1,7 +1,15 @@
 <H1>RESULTS</H1>
 
+<!--NEED TO INCLUDE SECTION TALKING ABOUT USER PREFERENCE-->
+
 <ul>
     <% foodResults.forEach(food =>{ %>
-        <li><%= food.food.label %>,  </li>
+        <% let displayFood = food.food.label %>
+        <% displayFood = displayFood.toLowerCase() %>
+        <% let regex = /(\b[a-z](?!\s))/g; %>
+        <% displayFood = displayFood.replace(regex, function(x){ %>
+            <% return x.toUpperCase(); %>
+        <% }); %>
+        <li><%= displayFood %>  </li>
     <% }) %>
 </ul>
