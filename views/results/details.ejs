@@ -24,3 +24,9 @@
     <%= foodIngredientsLabel %>
 </p>
 
+<p>This item may contain:</p>
+<ul>
+    <% chosenOne.cautions.forEach(allergen =>{ %>
+        <li><%= allergen.toLowerCase().replace(regex, function(x){return x.toUpperCase()})%></li>
+    <% }) %> 
+</ul>
