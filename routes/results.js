@@ -109,5 +109,27 @@ router.get('/recipesincluding/:id', (req, res) =>{
             }).catch(err => console.log(err));
 })
 
+router.get('/recipedetails/:id', (req, res) =>{
+    //res.send(req.query);
+    let searchUri = req.query.uri;
+    let uriArr = searchUri.split('');
+    //res.send(uriArr);
+    while(uriArr[0] != 'r'){
+        uriArr.shift()
+    }
+
+    let joinedUri = uriArr.join('');
+
+    let uri = 'http%3A%2f%2fwww.edamam.com%2Fontologies%2fedamam.owl%23recipe_fe9dd5d2a04a20445e0de6fc7cfc140f'
+    //console.log(searchUri);
+    //res.send(joinedUri);
+    // console.log(joinedUri);
+     axios.get(`https://api.edamam.com/search?r=http%3A%2f%2fwww.edamam.com%2Fontologies%2fedamam.owl%23${joinedUri}&app_id=${process.env.RECIPE_ID}&app_key=${process.env.RECIPE_KEY}&health=vegan&health=vegetarian`)
+            .then((response) => {
+                let recipeDetails = response.data[0]
+                //res.send(recipeDetails)
+                res.render('results/recipedetails', { recipeDetails })
+            }).catch(err => console.log(err));
+})
 
 module.exports = router;
