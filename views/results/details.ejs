@@ -1,1 +1,26 @@
 <h1>DETAILS</h1>
+
+<% let foodName = chosenOne.ingredients[0].parsed[0].food%>
+<% let foodIngredientsLabel = chosenOne.ingredients[0].parsed[0].foodContentsLabel%> 
+    <% foodName = foodName.toLowerCase() %>
+    <% foodIngredientsLabel = foodIngredientsLabel.toLowerCase() %>
+    <% let regex = /(\b[a-z](?!\s))/g; %>
+    <% foodName = foodName.replace(regex, function(x){ %>
+        <% return x.toUpperCase(); %>
+    <% }); %>
+    <% foodIngredientsLabel = foodIngredientsLabel.replace(regex, function(x){ %>
+        <% return x.toUpperCase(); %>
+    <% }); %>
+
+<h2>
+    <%= foodName %>
+</h2>
+<% let isVegan = "VEGAN" %>
+<% let isVegetarian = "VEGETARIAN" %> 
+<p>
+    <%= (isVegan) ? 'Vegan' : (isVegetarian) ? 'Vegetarian' : 'Item has not been rated Vegan or Vegetarian' %>
+</p>
+<p>
+    <%= foodIngredientsLabel %>
+</p>
+

@@ -80,6 +80,7 @@ router.get('/:id', (req, res) => {
     //     console.log(chosenOne);
     //     res.send(chosenOne);
     // })
+    //console.log(req.query.uri)
     axios.post(`https://api.edamam.com/api/food-database/v2/nutrients?app_id=${process.env.INGREDIENT_ID}&app_key=${process.env.INGREDIENT_KEY}`, {
         "ingredients": [
             {
@@ -91,7 +92,10 @@ router.get('/:id', (req, res) => {
     }
     )
     .then(response =>{
-        res.send(response.data)
+        //res.send(response.data)
+        let chosenOne = response.data;
+        res.render('results/details', { chosenOne })
+        //res.send(chosenOne);
     })
 })
 
