@@ -24,6 +24,11 @@
     <%= foodIngredientsLabel %>
 </p>
 
+<form method="GET" action="/results/recipesincluding/<%=foodName%>">
+    <input type="hidden" name="<%=foodName%>" value="<%=foodName%>">
+    <input type="submit" name="foodLabel" value="Find recipes including this item">
+</form>
+
 <p>This item may contain:</p>
 <ul>
     <% chosenOne.cautions.forEach(allergen =>{ %>

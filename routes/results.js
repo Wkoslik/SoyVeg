@@ -99,5 +99,10 @@ router.get('/:id', (req, res) => {
     })
 })
 
+router.get('/recipesincluding/:id', (req, res) =>{
+    
+    res.send('AHHHHH');
+})
+
 
 module.exports = router;
