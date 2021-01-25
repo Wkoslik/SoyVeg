@@ -1,9 +1,17 @@
 sequelize model:create --name user --attributes id:integer,firstName:string,lastName:string,email:string,password:string,age:integer,pronouns:string,nutrition_preference:string
 
-sequelize model:create --name ingredient --attributes foodId:string,name:string,quantity:integer,measureUri:string,healthLabel:string
+sequelize model:create --name likedingredient --attributes foodId:string,name:string,quantity:integer,measureUri:string,healthLabel:string
 
-sequelize model:create --name recipe --attributes recipeId:string,name:string,ingredients:string,healthLabel:string
+sequelize model:create --name likedrecipe --attributes recipeId:string,name:string,ingredients:string,healthLabel:string
 
-sequelize model:create --name userSavesIngredient --attributes Id:integer,userId:integer,ingredientId:string,likeOrDislike:string
+sequelize model:create --name dislikedingredient --attributes foodId:string,name:string,quantity:integer,measureUri:string,healthLabel:string
 
-sequelize model:create --name userSavesRecipe --attributes Id:integer,userId:integer,recipeId:string,likeOrDislike:string
+sequelize model:create --name dislikedrecipe --attributes recipeId:string,name:string,ingredients:string,healthLabel:string
+
+sequelize model:create --name userlikeingredient --attributes userId:integer,ingredientId:string
+
+sequelize model:create --name userdislikeingredient --attributes userId:integer,ingredientId:string
+
+sequelize model:create --name userlikerecipe --attributes userId:integer,recipeId:string
+
+sequelize model:create --name userdislikerecipe --attributes userId:integer,recipeId:string
