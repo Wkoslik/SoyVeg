@@ -53,8 +53,8 @@ router.get('/', (req, res) => {
         axios.get(`https://api.edamam.com/search?q=${searchTerm}&app_id=${process.env.RECIPE_ID}&app_key=${process.env.RECIPE_KEY}&health=vegan&health=vegetarian`)
             .then((response) => {
                 let recipeResults = response.data.hits
-                res.send(recipeResults)
-                //res.render('results/reciperesults', { recipeResults })
+                //res.send(recipeResults)
+                res.render('results/reciperesults', { recipeResults })
             }).catch(err => console.log(err));
     }
 })
