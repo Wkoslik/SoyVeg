@@ -11,6 +11,7 @@ let recipeDatabase = `https://api.edamam.com/search?q=${searchTerm}&app_id=${pro
 
 let userPreference = 'health=vegan'
 
+//search for a food or recipe
 router.get('/', (req, res) => {
     searchTerm = req.query.searchterm;
     console.log(searchTerm);
@@ -59,6 +60,7 @@ router.get('/', (req, res) => {
     }
 })
 
+//get details about a specifc ingredient
 router.get('/:id', (req, res) => {
     // let searchTerm = req.params.display
     // let switchSpacesRegex = /\s/g;
@@ -100,7 +102,7 @@ router.get('/:id', (req, res) => {
 })
 
 
-
+//find recipes including a specific food
 router.get('/recipesincluding/:id', (req, res) =>{
     let searchTerm = req.params.id
     axios.get(`https://api.edamam.com/search?q=${searchTerm}&app_id=${process.env.RECIPE_ID}&app_key=${process.env.RECIPE_KEY}&health=vegan&health=vegetarian`)
@@ -111,6 +113,7 @@ router.get('/recipesincluding/:id', (req, res) =>{
             }).catch(err => console.log(err));
 })
 
+//get recipe details for a specific recipe
 router.get('/recipedetails/:id', (req, res) =>{
     //res.send(req.query);
     let searchUri = req.query.uri;
@@ -126,7 +129,7 @@ router.get('/recipedetails/:id', (req, res) =>{
     //console.log(searchUri);
     //res.send(joinedUri);
     // console.log(joinedUri);
-     axios.get(`https://api.edamam.com/search?r=http%3A%2f%2fwww.edamam.com%2Fontologies%2fedamam.owl%23${joinedUri}&app_id=${process.env.RECIPE_ID}&app_key=${process.env.RECIPE_KEY}&health=vegan&health=vegetarian`)
+    axios.get(`https://api.edamam.com/search?r=http%3A%2f%2fwww.edamam.com%2Fontologies%2fedamam.owl%23${joinedUri}&app_id=${process.env.RECIPE_ID}&app_key=${process.env.RECIPE_KEY}&health=vegan&health=vegetarian`)
             .then((response) => {
                 let recipeDetails = response.data[0]
                 //res.send(recipeDetails)

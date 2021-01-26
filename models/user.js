@@ -12,10 +12,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.user.hasMany(models.userlikeingredient);
-      models.user.hasMany(models.userlikerecipe);
-      models.user.hasMany(models.userdislikeingredient);
-      models.user.hasMany(models.userdislikerecipe);
+      //models.user.hasMany(models.userlikeingredient); //switch this to belongs to mang likedingredient through userlikedingredient
+      models.user.belongsToMany(models.likedingredient, {through: "userlikeingredient"});
+      models.user.belongsToMany(models.likedrecipe, {through: "userlikerecipe"});
+      models.user.belongsToMany(models.dislikedingredient, {through: "userdislikeingredient"});
+      models.user.belongsToMany(models.dislikedrecipe, {through: "userdislikerecipe"});
     }
 
     validPassword(typedPassword) {

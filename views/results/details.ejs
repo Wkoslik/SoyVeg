@@ -45,7 +45,7 @@
     <% healthLabel = 'Vegetarian' %>
 <% } else { healthLabel = 'Neither Vegetarian or Vegan'} %>
 
-<form method="POST" action="/fave/faveingredients">
+<form method="get" action="views/fave/faveingredients">
     <input type="hidden" name="name" value="<%= chosenOne.ingredients[0].parsed[0].food %>">
     <input type="hidden" name="foodId" value="<%= chosenOne.ingredients[0].parsed[0].foodId %>">
     <input type="hidden" name="quantity" value="<%= chosenOne.ingredients[0].parsed[0].quantity %>">
