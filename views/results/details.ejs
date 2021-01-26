@@ -1,6 +1,9 @@
 <h1>DETAILS</h1>
 
 <% let foodName = chosenOne.ingredients[0].parsed[0].food%>
+<% let healthLabelVegan = chosenOne.healthLabels.find(element => element === "VEGAN"); %>
+<% let healthLabelVegetarian = chosenOne.healthLabels.find(element => element === "VEGETARIAN"); %>
+<% let healthLabel; %>
 <% let foodIngredientsLabel = chosenOne.ingredients[0].parsed[0].foodContentsLabel%> 
     <% foodName = foodName.toLowerCase() %>
     <% foodIngredientsLabel = foodIngredientsLabel.toLowerCase() %>
@@ -35,3 +38,31 @@
         <li><%= allergen.toLowerCase().replace(regex, function(x){return x.toUpperCase()})%></li>
     <% }) %> 
 </ul>
+
+<% if (healthLabelVegan){ %>
+    <%  healthLabel = 'Vegan' %>
+<% } else if(healthLabelVegetarian){ %>
+    <% healthLabel = 'Vegetarian' %>
+<% } else { healthLabel = 'Neither Vegetarian or Vegan'} %>
+
+<form method="POST" action="/fave/faveingredients">
+    <input type="hidden" name="name" value="<%= chosenOne.ingredients[0].parsed[0].food %>">
+    <input type="hidden" name="foodId" value="<%= chosenOne.ingredients[0].parsed[0].foodId %>">
+    <input type="hidden" name="quantity" value="<%= chosenOne.ingredients[0].parsed[0].quantity %>">
+    <input type="hidden" name="measureURI" value="<%= chosenOne.ingredients[0].parsed[0].measureURI %>">
+    <input type="hidden" name="healthLabel" value="<%= healthLabel %>">
+    <input type="submit" name="likedingredient" value="Save to favorites">
+</form>
+
+<form method="POST" action="/dislike/dislikeingredients">
+    <input type="hidden" name="name" value="<%= chosenOne.ingredients[0].parsed[0].food %>">
+    <input type="hidden" name="foodId" value="<%= chosenOne.ingredients[0].parsed[0].foodId %>">
+    <input type="hidden" name="quantity" value="<%= chosenOne.ingredients[0].parsed[0].quantity %>">
+    <input type="hidden" name="measureURI" value="<%= chosenOne.ingredients[0].parsed[0].measureURI %>">
+    <input type="hidden" name="healthLabel" value="<%= healthLabel %>">
+    <input type="submit" name="dislikedingredient" value="Save to dislikes">
+</form>
+
+
+
+

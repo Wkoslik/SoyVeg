@@ -1,4 +1,5 @@
 'use strict';
+const bcrypt= require('bcrypt');
 const {
   Model
 } = require('sequelize');
@@ -16,16 +17,73 @@ module.exports = (sequelize, DataTypes) => {
       models.user.hasMany(models.userdislikeingredient);
       models.user.hasMany(models.userdislikerecipe);
     }
+
+    validPassword(typedPassword) {
+      let isValid = bcrypt.compareSync(typedPassword, this.password);//returns a boolean
+      return isValid;
+    }
+
+    toJSON(){
+      let userData = this.get(); //gets all of the data 
+      delete userData.password;
+      return userData;
+    }
   };
   user.init({
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
+    firstName: {
+      type: DataTypes.STRING,
+      validate: {
+        len:{
+          args: [1,99],
+          msg: 'Name must be between 1 and 99 characters'
+        }
+      }
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      validate: {
+        len:{
+          args: [1,99],
+          msg: 'Name must be between 1 and 99 characters'
+        }
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: {
+          msg: 'Invalid email address'
+        }
+      }
+    },
+    password:{
+      type: DataTypes.STRING,
+      validate: {
+        len: {
+          args: [8, 99],
+          msg: 'Password must be between 8 and 99 characters'
+        },
+        notContains: {
+          args: this.name,
+          msg: 'password cannot contain your name'
+        }
+      }
+    },
     age: DataTypes.INTEGER,
     pronouns: DataTypes.STRING,
     nutrition_preference: DataTypes.STRING
   }, {
+    hooks: {
+      beforeCreate: (pendingUser, options) =>{
+        //check if there is a user being pass AND that that user has a password
+        if(pendingUser && pendingUser.password){
+        //hash the password
+        let hash = bcrypt.hashSync(pendingUser.password, 12);
+        //store the hash as the users password
+        pendingUser.password = hash;
+        }
+      }
+    },
     sequelize,
     modelName: 'user',
   });

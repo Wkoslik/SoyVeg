@@ -15,3 +15,9 @@ sequelize model:create --name userdislikeingredient --attributes userId:integer,
 sequelize model:create --name userlikerecipe --attributes userId:integer,recipeId:string
 
 sequelize model:create --name userdislikerecipe --attributes userId:integer,recipeId:string
+
+foodId: DataTypes.STRING,
+name: DataTypes.STRING,
+quantity: DataTypes.INTEGER,
+measureUri: DataTypes.STRING,
+healthLabel: DataTypes.STRING

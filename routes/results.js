@@ -95,9 +95,11 @@ router.get('/:id', (req, res) => {
         //res.send(response.data)
         let chosenOne = response.data;
         res.render('results/details', { chosenOne })
-        //res.send(chosenOne);
+        //res.send(chosenOne.healthLabels);
     })
 })
+
+
 
 router.get('/recipesincluding/:id', (req, res) =>{
     let searchTerm = req.params.id
@@ -131,5 +133,7 @@ router.get('/recipedetails/:id', (req, res) =>{
                 res.render('results/recipedetails', { recipeDetails })
             }).catch(err => console.log(err));
 })
+
+
 
 module.exports = router;

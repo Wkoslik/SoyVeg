@@ -16,14 +16,16 @@ router.post('/signup', (req, res) =>{
       email: req.body.email
     },
     defaults: {
-      name: req.body.name,
-      password: req.body.password
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      password: req.body.password,
+      nutrition_preference: req.body.nutrition_preference
     }
   }).then(([user, created]) =>{
     if (created){
       //if the user was created
       //redirect to homepage or profile
-      console.log(`${user.name} was CREATED`);
+      console.log(`${user.firstName} was CREATED`);
       passport.authenticate('local', {
         successRedirect: '/',
         successFlash: 'Welcome to this app' //sent to the user so they know whats going on
@@ -31,7 +33,7 @@ router.post('/signup', (req, res) =>{
   } else {
     // else (user wasn't created/user was found and cannot sign up)
       //redirect to the /auth/signup
-    console.log(`${user.name} was FOUND`);
+    console.log(`${user.firstName} ${user.lastName} was FOUND`);
     req.flash('error', 'Email already exists');
     res.redirect('/auth/signup');
   }

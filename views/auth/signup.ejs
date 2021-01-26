@@ -1,12 +1,29 @@
 <form action="/auth/signup" method="POST">
-  <label for="new-email">Email</label>
-  <input id="new-email" type="email" name="email">
+  <div>
+    <label for="new-first-name">First Name</label>
+    <input id="new-first-name" type="text" name="firstName">
 
-  <label for="new-name">Name</label>
-  <input id="new-name" type="text" name="name">
+    <label for="new-last-name">Last Name</label>
+    <input id="new-last-name" type="text" name="lastName">
+  </div>
 
-  <label for="new-password">Password</label>
-  <input id="new-password" type="password" name="password">
+  <div>
+    <label for="new-email">Email</label>
+    <input id="new-email" type="email" name="email">
+
+    <label for="new-password">Password</label>
+    <input id="new-password" type="password" name="password">
+  </div>
+
+  <div>
+    <p>Diet Preference:</p>
+
+    <input type="radio" id="vegan" name="nutrition_preference" value="vegan">
+    <label for="vegan">Vegan</label>
+
+    <input type="radio" id="vegetarian" name="nutrition_preference" value="vegetarian">
+    <label for="vegetarian">Vegetarian</label>
+  </div>
 
   <input type="submit" value="Sign up">
 </form>
