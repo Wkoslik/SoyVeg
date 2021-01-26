@@ -9,18 +9,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       foodId: {
+        unique: true,
+        allowNull: false,
         type: Sequelize.STRING
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       quantity: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       measureUri: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       healthLabel: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

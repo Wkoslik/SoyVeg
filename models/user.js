@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.user.hasMany(models.userlikedingredient);
-      models.user.hasMany(models.userlikedrecipe);
+      models.user.hasMany(models.userlikeingredient);
+      models.user.hasMany(models.userlikerecipe);
       models.user.hasMany(models.userdislikeingredient);
       models.user.hasMany(models.userdislikerecipe);
     }
