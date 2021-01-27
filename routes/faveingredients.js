@@ -10,8 +10,8 @@ router.get('/', (req, res) => {
     //show all liked ingredients where userId = req.user.id
     db.user.findByPk(req.user.id).then(user => {
         user.getLikedingredients().then(ingredient => {
-            // res.send(ingredient);
-            res.render('fave/faveingredients', {ingredient})
+            //res.send(ingredient);
+            res.render('fave/faveingredients', { ingredient })
         })
     })
 })
@@ -41,11 +41,18 @@ router.post('/', (req, res) => {
 )
 
 
-module.exports = router;
+//delete from favorites
+router.delete('/:id', (req, res) => {
+    db.user.findByPk(req.user.id).then(user => {
+        db.likedingredient.findByPk(req.body.id).then(ingredient => {
+            user.removeLikedingredient(ingredient).then(removed => {
+                console.log("REMOVED!!!")
+                res.redirect('/');
+            })
+        })
+    })
+})
 
-// db.user.findByPk(1).then(user =>{
-//     user.getPets({ include: [db.toy]}).then(pets =>{
-//         pets.forEach(pet =>{
-//             console.log(`${user.name}'s pet ${pet.name} has ${pet.toys.length} toy(s)`)
-//         })
-//     })
+
+
+module.exports = router;

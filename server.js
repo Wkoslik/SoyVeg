@@ -7,15 +7,20 @@ const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const helmet = require('helmet');
 const app = express();
+const methodOverride = require('method-override');
 
 
 app.set('view engine', 'ejs');
 
 app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride('_method'));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false,
+}
+));
 
 app.use(session({ //because of how this works, we have access to this session on ANY request
   secret: process.env.SESSION_SECRET, //should be an ENV variable

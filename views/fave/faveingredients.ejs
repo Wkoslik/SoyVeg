@@ -3,7 +3,13 @@
 <ul>
    <% if(ingredient.length >0){ %>
     <% ingredient.forEach(ingredient => { %>
-        <li><%= ingredient.name %> | <%= ingredient.healthLabel %></li>
+        <li><%= ingredient.name %> | <%= ingredient.healthLabel %>
+        <form method="POST" action='/faveingredients/<%= ingredient.foodId %> ?_method=DELETE'>
+            <input type="hidden" name="id" value="<%=ingredient.id%>">
+            <input type="hidden" name="foodId" value="<%=ingredient.foodId%>">
+            <input type="submit" value="Remove from favorites">
+        </form>
+        </li>
     <% })} else{ %>
         <li><%= 'There are no saved ingredients.' %></li>
     <% }; %>
