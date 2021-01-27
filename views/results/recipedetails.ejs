@@ -1,3 +1,19 @@
+<% let healthLabelVegan = recipeDetails.healthLabels.find(element => element == "Vegan"); %>
+<% let healthLabelVegetarian = recipeDetails.healthLabels.find(element => element == "Vegetarian"); %>
+<% let healthLabel; %>
+<% let recipeLabel = recipeDetails.label %> 
+    <% recipeLabel = recipeLabel.toLowerCase() %>
+    <% let regex = /(\b[a-z](?!\s))/g; %>
+    <% recipeLabel = recipeLabel.replace(regex, function(x){ %>
+        <% return x.toUpperCase(); %>
+    <% }); %>
+<% let searchUri = recipeDetails.uri; %>
+<% let uriArr = searchUri.split(''); %>
+<%  while(uriArr[0] != 'r'){ %>
+    <%    uriArr.shift() %>
+<% } %>
+<% let recipeId = uriArr.join(''); %>
+
 <h1><%= recipeDetails.label %></h1>
 
 <img src="<%= recipeDetails.image %> " alt="<%=recipeDetails.label %>">
@@ -11,8 +27,30 @@
 </ul>
 
 <p>Health Labels</p>
-<ul>
-    <% recipeDetails.healthLabels.forEach(label =>{ %>
-        <li><%= label %></li>
-    <% }) %> 
-</ul>
+<% if (healthLabelVegan){ %>
+    <%  healthLabel = 'Vegan' %>
+    <p><%= healthLabel %> </p>
+<% } else if(healthLabelVegetarian){ %>
+    <% healthLabel = 'Vegetarian' %>
+    <p><%= healthLabel %> </p>
+<% } else { %>
+    <% healthLabel = 'Neither Vegetarian or Vegan'%>
+    <p><%= healthLabel %> </p>
+<%} %>
+
+<form method="POST" action="/faverecipes">
+    <input type="hidden" name="name" value="<%= recipeDetails.label%>">
+    <input type="hidden" name="recipeId" value="<%= recipeId %>">
+    
+    <input type="hidden" name="ingredients" value="<%= recipeDetails.ingredientLines %>">
+    <input type="hidden" name="healthLabel" value="<%= healthLabel %>">
+    <input type="submit" name="likedrecipe" value="Save to favorites">
+</form>
+
+<form method="POST" action="/dislikerecipes">
+    <input type="hidden" name="name" value="<%= recipeDetails.label %>">
+    <input type="hidden" name="recipeId" value="<%= recipeId %>">
+    <input type="hidden" name="ingredients" value="<%= recipeDetails.ingredientLines %>">
+    <input type="hidden" name="healthLabel" value="<%= healthLabel %>">
+    <input type="submit" name="dislikedingredient" value="Save to dislikes">
+</form>
