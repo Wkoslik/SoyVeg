@@ -1,1 +1,22 @@
-<h1>dislike ingredients</h1>
+<h1>Disliked Ingredients</h1>
+
+<ul>
+    <% if(ingredient.length >0){ %>
+    <% ingredient.forEach(ingredient => { %>
+        <li><form method="GET" action='/results/<%= ingredient.foodId %> '>
+            <input type="hidden" name="uri" value='<%= ingredient.measureUri %>'>
+            <input type="hidden" name="foodId" value="<%= ingredient.foodId %>">
+            <input type="hidden" name="quantity" value='1'>
+            <input type="submit" name="foodLabel" value="<%= ingredient.name %> | <%= ingredient.healthLabel %>">
+            </form>
+            </li>
+        <form method="POST" action='/dislikeingredients/<%= ingredient.foodId %> ?_method=DELETE'>
+            <input type="hidden" name="id" value="<%=ingredient.id%>">
+            <input type="hidden" name="foodId" value="<%=ingredient.foodId%>">
+            <input type="submit" value="Remove from dislikes">
+        </form>
+        </li>
+    <% })} else{ %>
+        <li><%= 'Really? You like everything? I call shenanigans. Let the hate flow through you.' %></li>
+    <% }; %>
+</ul>

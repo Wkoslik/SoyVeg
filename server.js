@@ -60,10 +60,6 @@ app.get('/faverecipes', /*isLoggedIn,*/ (req,res)=>{
   res.render('fave/faverecipes');
 });
 
-app.get('/dislikeingredients', /*isLoggedIn,*/ (req,res)=>{
-  res.render('dislike/dislikeingredients');
-});
-
 app.get('/dislikerecipes', /*isLoggedIn,*/ (req,res)=>{
   res.render('dislike/dislikerecipes');
 });
@@ -74,6 +70,8 @@ app.use('/auth', require('./routes/auth'));
 //app.use('/dino', /*isLoggedIn,*/ require('./routes/dino')); //this auth locks an entire route
 app.use('/results', /*isLoggedIn,*/ require('./routes/results'));
 app.use('/faveingredients', /*isLoggedIn,*/ require('./routes/faveingredients'));
+app.use('/dislikeingredients', /*isLoggedIn,*/ require('./routes/dislikeingredients'));
+
 
 var server = app.listen(process.env.PORT || 3001, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3001}🎧`));
 
