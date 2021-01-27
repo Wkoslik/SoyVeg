@@ -6,13 +6,14 @@ const db = require('../models');
 
 //load favorite ingredients
 router.get('/', (req, res) => {
-    res.send('yodel');
-    // db.user.findByPk(req.user.id).then(user =>{
-    //     user.getLikedIngredients().then(ingredients =>{
-    //         res.send(ingredients);
-    //         //res.render('/', {ingredients})
-    //     })
-    // })
+    // res.send('yodel');
+    //show all liked ingredients where userId = req.user.id
+    db.user.findByPk(req.user.id).then(user => {
+        user.getLikedingredients().then(ingredient => {
+            // res.send(ingredient);
+            res.render('fave/faveingredients', {ingredient})
+        })
+    })
 })
 
 //add favorite ingredient to db
@@ -29,9 +30,10 @@ router.post('/', (req, res) => {
     }).then(([ingredient, created]) => {
         db.user.findByPk(req.user.id).then(user => {
             ingredient.addUser(user).then(relationship => {
-                console.log(`${ingredient.name} was liked by ${user.name}`);
-                res.send(`${ingredient.name} was liked by ${user.name}`);
+                //console.log(`${ingredient.name} was liked by ${user.name}`);
+                //res.send(`${ingredient.name} was liked by ${user.name}`);
                 //res.send('CREATED?')
+                res.redirect('/faveingredients');
             })
         })
     })
