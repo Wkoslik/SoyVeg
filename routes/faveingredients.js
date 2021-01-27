@@ -47,7 +47,7 @@ router.delete('/:id', (req, res) => {
         db.likedingredient.findByPk(req.body.id).then(ingredient => {
             user.removeLikedingredient(ingredient).then(removed => {
                 console.log("REMOVED!!!")
-                res.redirect('/');
+                res.redirect('/faveingredients');
             })
         })
     })
