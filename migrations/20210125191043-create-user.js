@@ -31,7 +31,7 @@ module.exports = {
       pronouns: {
         type: Sequelize.STRING
       },
-      nutrition_preference: {
+      nutritionPreference: {
         type: Sequelize.STRING,
         allowNull: false
       },
