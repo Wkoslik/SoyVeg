@@ -72,7 +72,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     age: DataTypes.INTEGER,
     pronouns: DataTypes.STRING,
-    nutrition_preference: DataTypes.STRING
+    nutritionPreference: DataTypes.STRING
   }, {
     hooks: {
       beforeCreate: (pendingUser, options) =>{

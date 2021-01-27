@@ -19,7 +19,7 @@ router.post('/signup', (req, res) =>{
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       password: req.body.password,
-      nutrition_preference: req.body.nutrition_preference
+      nutritionPreference: req.body.nutritionPreference
     }
   }).then(([user, created]) =>{
     if (created){

@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   userdislikerecipe.init({
     userId: DataTypes.INTEGER,
-    recipeId: DataTypes.STRING
+    dislikedrecipeId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'userdislikerecipe',

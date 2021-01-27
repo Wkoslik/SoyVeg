@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.likedingredient.belongsToMany(models.user, {through: "userlikeingredient"})
+      models.likedingredient.belongsToMany(models.user, {through: "userlikeingredients"})
     }
   };
   likedingredient.init({

@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   userlikeingredient.init({
     userId: DataTypes.INTEGER,
-    ingredientId: DataTypes.STRING
+    likedingredientId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'userlikeingredient',

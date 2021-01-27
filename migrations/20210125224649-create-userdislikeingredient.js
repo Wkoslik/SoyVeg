@@ -12,9 +12,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      ingredientId: {
+      dislikedingredientId: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
