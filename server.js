@@ -44,7 +44,12 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
   req.session.testVar = "FIRE";
-  res.render('index');
+  if(req.user){
+    res.render('index');
+  } else{
+    res.render('auth/login');
+  }
+  
 });
 
 //TODO remove comments from around isLoggedIn

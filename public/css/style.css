@@ -1,37 +1,149 @@
-body{
-  font-family: 'Open Sans', sans-serif;
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #236946;
+    width: 600px;
+    margin: 0 auto;
+    font-size: 18px;
 }
 
 nav ul li {
-  text-decoration: none;
-  display: inline-block;
-  margin-right: .3em;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: .3em;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+#logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#navtitle {
+    font-size: 64px;
+    color: whitesmoke;
+}
+
+.fas {
+    color: whitesmoke;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
 }
 
 h1 {
-  color: #00ac8f;
-  font-family: 'Potta One', cursive;
+    color: whitesmoke;
+    font-family: 'Architects Daughter', cursive;
 }
 
-.alert-container{
-  width: 50vw;
-  margin: 0 auto;
-  box-shadow: 5px 10px #afafaf;
+footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+    border-top: 1px solid rgba(147, 233, 190, 1);
+    ;
 }
 
-.alert{
-  margin: .25em;
-  padding: .25em;
-  background-color: rgba(43, 43, 43, .687);
-  color: white;
+footer i {
+    color: whitesmoke;
+    padding: 16px;
 }
 
-.error{
-  border: 3px solid crimson;
-  background-color: rgb(148,27,51);
+.alert-container {
+    width: 50vw;
+    margin: 0 auto;
+    box-shadow: 5px 10px #afafaf;
 }
 
-.success{
-  border: 3px solid forestgreen;
-  background-color: rgb(21, 85, 21);
+.alert {
+    margin: .25em;
+    padding: .25em;
+    background-color: rgba(43, 43, 43, .687);
+    color: white;
+}
+
+.error {
+    border: 3px solid crimson;
+    background-color: rgb(148, 27, 51);
+}
+
+.success {
+    border: 3px solid forestgreen;
+    background-color: rgb(21, 85, 21);
+}
+
+.login {
+    height: 400px;
+    width: 600px;
+    margin: 0 auto;
+    background-color: rgba(147, 233, 190, .8);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.login form {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login input {
+    border-radius: 10px;
+    padding: 2px;
+}
+
+.loginform {
+    display: flex;
+}
+
+.loginemail,
+.password {
+    padding: 4px;
+}
+
+.loginbtn {
+    margin: 16px;
+    width: 25%;
+    padding: 8px;
+    border-radius: 10px;
+    transition: 500ms ease-in-out;
+    font-size: 18px;
+}
+
+.loginbtn:hover {
+    background-color: #236946;
+    color: whitesmoke;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.signup {
+    width: 100%;
+    text-align: right;
+    padding: 16px;
+    color: black;
+}
+
+.signup a:visited {
+    color: #236946;
+}
+
+.fa-linkedin,
+.fa-github {
+    margin: 16px;
+    transition: 500ms ease-in-out;
+}
+
+.fa-linkedin:hover,
+.fa-github:hover {
+    background-color: rgba(147, 233, 190, 1);
+    color: #236946;
+    cursor: pointer;
 }

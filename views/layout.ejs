@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta Content-Security-Policy: default-src 'self';font-src fonts.gstatic.com;style-src 'self' fonts.googleapis.com>
     <title>SoyVeg</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Potta+One&display=swap" rel="stylesheet">
-  </head>
-  <body>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Mali:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/871cab0f0e.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
     <header>
-      <nav>
-        <ul>
-          <% if (currentUser) { %>
-            <li><a href="/">Home</a></li>
-            <li><a href="/auth/logout">Logout</a></li>
-            <li><a href="/profile">Profile</a></li>
-          <% } else {%>
-          <li><a href="/auth/signup">Signup</a></li>
-          <li><a href="/auth/login">Login</a></li>
-            <% } %>
-        </ul>
-      </nav>
+        <nav>
+            <div id="logo">
+                <i class="fas fa-leaf fa-3x" id="leaf"></i>
+                <h1 id="navtitle">SoyVeg</h1>
+            </div>
+            <ul>
+                <% if (currentUser) { %>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <% } %>
+            </ul>
+        </nav>
     </header>
     <%- include('./partials/alerts.ejs') %>
-    <%- body %>
-  </body>
+        <%- body %>
+
+            <footer>
+                <a href="https://www.linkedin.com/in/wkoslik/" target=_blank><i class="fab fa-linkedin fa-2x"></i></a>
+                <a href="https://github.com/Wkoslik/SoyVeg" target=_blank><i class="fab fa-github fa-2x"></i></a>
+            </footer>
+</body>
+
 </html>
