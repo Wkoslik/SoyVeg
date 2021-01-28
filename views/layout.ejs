@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Authentication</title>
+    <title>SoyVeg</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Potta+One&display=swap" rel="stylesheet">
@@ -18,12 +18,11 @@
             <li><a href="/profile">Profile</a></li>
           <% } else {%>
           <li><a href="/auth/signup">Signup</a></li>
-          <li><a href="/auth/login">Login</a></li>
+          <li><a href="/auth/login">Login</a></li>Í
             <% } %>
         </ul>
       </nav>
     </header>
-    <h1>Authentication</h1>
     <%- include('./partials/alerts.ejs') %>
     <%- body %>
   </body>

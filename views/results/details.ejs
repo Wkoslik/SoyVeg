@@ -1,9 +1,12 @@
 <h1>DETAILS</h1>
+<%//TODO ensure food label is pulling correctly for whether item is vegan or vegetarian%>
 
 <% let foodName = chosenOne.ingredients[0].parsed[0].food%>
 <% let healthLabelVegan = chosenOne.healthLabels.find(element => element === "VEGAN"); %>
 <% let healthLabelVegetarian = chosenOne.healthLabels.find(element => element === "VEGETARIAN"); %>
 <% let healthLabel; %>
+<% let isVegan = false %>
+<% let isVegetarian = false %> 
 <% let foodIngredientsLabel; %>
 <% console.log(!chosenOne.ingredients[0].parsed[0].foodContentsLabel); %>
 <% if(chosenOne.ingredients[0].parsed[0].foodContentsLabel){ %>
@@ -24,10 +27,18 @@
 <h2>
     <%= foodName %>
 </h2>
-<% let isVegan = "VEGAN" %>
-<% let isVegetarian = "VEGETARIAN" %> 
+<% if (healthLabelVegan){ %>
+    <%  healthLabel = 'Vegan' %>
+    <% isVegan = true %>
+    <% isVegetarian = false%>
+<% } else if(healthLabelVegetarian){ %>
+    <% healthLabel = 'Vegetarian' %>
+    <% isVegan = false%>
+    <% isVegetarian = true %>
+<% } else { healthLabel = 'Item has not been rated as Vegan or Vegetarian'} %>
+
 <p>
-    <%= (isVegan) ? 'Vegan' : (isVegetarian) ? 'Vegetarian' : 'Item has not been rated Vegan or Vegetarian' %>
+    <%= (isVegan) ? 'Vegan' : (isVegetarian) ? 'Vegetarian' : '${healthLabel}' %>
 </p>
 <p>
     <%= foodIngredientsLabel %>
@@ -40,16 +51,13 @@
 
 <p>This item may contain:</p>
 <ul>
+    <%//TODO fix regex so it removes underscores and replaces it with a space%>
     <% chosenOne.cautions.forEach(allergen =>{ %>
         <li><%= allergen.toLowerCase().replace(regex, function(x){return x.toUpperCase()})%></li>
     <% }) %> 
 </ul>
 
-<% if (healthLabelVegan){ %>
-    <%  healthLabel = 'Vegan' %>
-<% } else if(healthLabelVegetarian){ %>
-    <% healthLabel = 'Vegetarian' %>
-<% } else { healthLabel = 'Neither Vegetarian or Vegan'} %>
+
 
 <form method="POST" action="/faveingredients">
     <input type="hidden" name="name" value="<%= chosenOne.ingredients[0].parsed[0].food %>">

@@ -1,3 +1,8 @@
+//TODO remove res.send
+//TODO remove console.logs
+//TODO add comments as to what the routes are doing
+//TODO add comments as to why the routes are doing what theyre doing
+
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
@@ -46,7 +51,7 @@ router.delete('/:id', (req, res) => {
     db.user.findByPk(req.user.id).then(user => {
         db.likedrecipe.findByPk(req.body.id).then(recipe => {
             user.removeLikedrecipe(recipe).then(removed => {
-    //             console.log("REMOVED!!!")
+                //             console.log("REMOVED!!!")
                 res.redirect('/faverecipes');
             })
         })

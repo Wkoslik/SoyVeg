@@ -17,7 +17,7 @@
 <h1><%= recipeDetails.label %></h1>
 
 <img src="<%= recipeDetails.image %> " alt="<%=recipeDetails.label %>">
-<p>source: <a href="<%=recipeDetails.url%>"> <%= recipeDetails.source %> </a></p>
+<p>Additional Details: <a href="<%=recipeDetails.url%>" target=_blank> <%= recipeDetails.source %> </a></p>
 
 <p>Ingredients</p>
 <ul>
@@ -34,7 +34,7 @@
     <% healthLabel = 'Vegetarian' %>
     <p><%= healthLabel %> </p>
 <% } else { %>
-    <% healthLabel = 'Neither Vegetarian or Vegan'%>
+    <% healthLabel = 'Item has not been rated vegetarian or vegan.'%>
     <p><%= healthLabel %> </p>
 <%} %>
 

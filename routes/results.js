@@ -1,3 +1,4 @@
+//TODO remove res.send
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
@@ -5,9 +6,11 @@ const axios = require('axios');
 const db = require('../models');
 
 let searchTerm;
+//TODO update userPreference so that it references the user who is logged in
 let userPreference = `health=vegan`;
 
 //search for a food or recipe
+//TODO eliminate edamam limit?
 router.get('/', (req, res) => {
     searchTerm = req.query.searchterm;
     let database = req.query.searchtype;

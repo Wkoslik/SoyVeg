@@ -1,22 +1,23 @@
 <H1>RESULTS</H1>
 
-<!--NEED TO INCLUDE SECTION TALKING ABOUT USER PREFERENCE-->
+<!--TODO NEED TO INCLUDE SECTION TALKING ABOUT USER PREFERENCE-->
 
 <ul>
     <% if(recipeResults.length === 0){ %>
         <p><%= 'There are no results.' %></p>
     <% } else {recipeResults.forEach((recipe) =>{ %>
-        <% let displayRecipe = recipe.recipe.label %>
-        <% displayRecipe = displayRecipe.toLowerCase() %>
-        <% let regex = /(\b[a-z](?!\s))/g; %>
-        <% displayRecipe = displayRecipe.replace(regex, function(x){ %>
-            <% return x.toUpperCase(); %>
-        <% }); %>
-        <li><img src="<%= recipe.recipe.image %> ">
-        <form method="GET" action='/results/recipedetails/<%= displayRecipe %> '>
-        <input type="hidden" name="uri" value="<%= recipe.recipe.uri %>">
-        <input type="submit" name="foodLabel" value="<%= displayRecipe %>">
-        </form>
-        </li>
+            <% let displayRecipe = recipe.recipe.label %>
+            <% displayRecipe = displayRecipe.toLowerCase() %>
+            <% let regex = /(\b[a-z](?!\s))/g; %>
+            <% displayRecipe = displayRecipe.replace(regex, function(x){ %>
+                <% return x.toUpperCase(); %>
+            <% }); %>
+            <li>
+                <img src="<%= recipe.recipe.image %> ">
+                <form method="GET" action='/results/recipedetails/<%= displayRecipe %> '>
+                    <input type="hidden" name="uri" value="<%= recipe.recipe.uri %>">
+                    <input type="submit" name="foodLabel" value="<%= displayRecipe %>">
+                </form>
+            </li>
     <% })} %>
 </ul>

@@ -1,3 +1,6 @@
+//TODO remove res.send and console.logs
+//TODO add comments as to what the routes are doing
+//TODO Add comments as to why the routes are doing what they are doing
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
