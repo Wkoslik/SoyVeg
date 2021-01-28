@@ -1,8 +1,3 @@
-//TODO remove res.send
-//TODO remove console.logs
-//TODO add comments as to what the routes are doing
-//TODO add comments as to why the routes are doing what theyre doing
-
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
@@ -11,11 +6,8 @@ const db = require('../models');
 
 //load favorite ingredients
 router.get('/', (req, res) => {
-    // res.send('yodel');
-    //show all liked ingredients where userId = req.user.id
     db.user.findByPk(req.user.id).then(user => {
         user.getLikedingredients().then(ingredient => {
-            //res.send(ingredient);
             res.render('fave/faveingredients', { ingredient })
         })
     })
@@ -23,7 +15,6 @@ router.get('/', (req, res) => {
 
 //add favorite ingredient to db
 router.post('/', (req, res) => {
-    //res.send(req.body);
     db.likedingredient.findOrCreate({
         where: {
             foodId: req.body.foodId,
@@ -35,9 +26,6 @@ router.post('/', (req, res) => {
     }).then(([ingredient, created]) => {
         db.user.findByPk(req.user.id).then(user => {
             ingredient.addUser(user).then(relationship => {
-                //console.log(`${ingredient.name} was liked by ${user.name}`);
-                //res.send(`${ingredient.name} was liked by ${user.name}`);
-                //res.send('CREATED?')
                 res.redirect('/faveingredients');
             })
         })
@@ -51,7 +39,6 @@ router.delete('/:id', (req, res) => {
     db.user.findByPk(req.user.id).then(user => {
         db.likedingredient.findByPk(req.body.id).then(ingredient => {
             user.removeLikedingredient(ingredient).then(removed => {
-                console.log("REMOVED!!!")
                 res.redirect('/faveingredients');
             })
         })
