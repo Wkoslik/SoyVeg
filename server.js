@@ -1,3 +1,5 @@
+
+
 require('dotenv').config();
 const express = require('express');
 const layouts = require('express-ejs-layouts');
@@ -47,13 +49,13 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+//TODO remove comments from around isLoggedIn
 app.get('/search', /*isLoggedIn,*/ (req,res)=>{
   res.render('search');
 });
 
-
+//TODO remove comments from around isLoggedIn
 app.use('/auth', require('./routes/auth'));
-//app.use('/dino', /*isLoggedIn,*/ require('./routes/dino')); //this auth locks an entire route
 app.use('/profile', /*isLoggedIn,*/ require('./routes/profile'));
 app.use('/results', /*isLoggedIn,*/ require('./routes/results'));
 app.use('/faveingredients', /*isLoggedIn,*/ require('./routes/faveingredients'));

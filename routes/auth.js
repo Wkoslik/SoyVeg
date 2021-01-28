@@ -8,7 +8,7 @@ router.get('/signup', (req, res) => {
 });
 
 //sign up POST route
-router.post('/signup', (req, res) =>{
+router.post('/signup', (req, res) => {
   //res.send(req.body);
   //findOrCreate a new user based on email
   db.user.findOrCreate({
@@ -21,8 +21,8 @@ router.post('/signup', (req, res) =>{
       password: req.body.password,
       nutritionPreference: req.body.nutritionPreference
     }
-  }).then(([user, created]) =>{
-    if (created){
+  }).then(([user, created]) => {
+    if (created) {
       //if the user was created
       //redirect to homepage or profile
       console.log(`${user.firstName} was CREATED`);
@@ -30,16 +30,16 @@ router.post('/signup', (req, res) =>{
         successRedirect: '/',
         successFlash: 'Welcome to this app' //sent to the user so they know whats going on
       })(req, res);//iif? have to call it immediately (immediately invoked function)
-  } else {
-    // else (user wasn't created/user was found and cannot sign up)
+    } else {
+      // else (user wasn't created/user was found and cannot sign up)
       //redirect to the /auth/signup
-    console.log(`${user.firstName} ${user.lastName} was FOUND`);
-    req.flash('error', 'Email already exists');
-    res.redirect('/auth/signup');
-  }
+      console.log(`${user.firstName} ${user.lastName} was FOUND`);
+      req.flash('error', 'Email already exists');
+      res.redirect('/auth/signup');
+    }
 
-  }).catch(err =>{
-      //if there is an error it's probably a validation error so we will return to /auth/signup
+  }).catch(err => {
+    //if there is an error it's probably a validation error so we will return to /auth/signup
     console.log('BAD NEWS BEARS THERE WAS AN ERROR');
     console.log(err);
     req.flash('error', err.message);
@@ -61,7 +61,7 @@ router.post('/login', passport.authenticate('local', {
 }))
 
 //logout route
-router.get('/logout', (req,res) =>{
+router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
   req.flash('Success', 'Thanks! See ya soon!');
