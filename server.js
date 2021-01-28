@@ -47,11 +47,6 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/profile', /*isLoggedIn,*/ (req, res) => {
-  //console.log(req.session.testVar);
-  res.render('profile');
-});
-
 app.get('/search', /*isLoggedIn,*/ (req,res)=>{
   res.render('search');
 });
@@ -59,11 +54,13 @@ app.get('/search', /*isLoggedIn,*/ (req,res)=>{
 
 app.use('/auth', require('./routes/auth'));
 //app.use('/dino', /*isLoggedIn,*/ require('./routes/dino')); //this auth locks an entire route
+app.use('/profile', /*isLoggedIn,*/ require('./routes/profile'));
 app.use('/results', /*isLoggedIn,*/ require('./routes/results'));
 app.use('/faveingredients', /*isLoggedIn,*/ require('./routes/faveingredients'));
 app.use('/faverecipes', /*isLoggedIn,*/ require('./routes/faverecipes'));
 app.use('/dislikeingredients', /*isLoggedIn,*/ require('./routes/dislikeingredients'));
 app.use('/dislikerecipes', /*isLoggedIn,*/ require('./routes/dislikerecipes'));
+
 
 
 var server = app.listen(process.env.PORT || 3001, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3001}🎧`));

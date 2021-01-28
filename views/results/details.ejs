@@ -4,7 +4,13 @@
 <% let healthLabelVegan = chosenOne.healthLabels.find(element => element === "VEGAN"); %>
 <% let healthLabelVegetarian = chosenOne.healthLabels.find(element => element === "VEGETARIAN"); %>
 <% let healthLabel; %>
-<% let foodIngredientsLabel = chosenOne.ingredients[0].parsed[0].foodContentsLabel%> 
+<% let foodIngredientsLabel; %>
+<% console.log(!chosenOne.ingredients[0].parsed[0].foodContentsLabel); %>
+<% if(chosenOne.ingredients[0].parsed[0].foodContentsLabel){ %>
+    <% foodIngredientsLabel = chosenOne.ingredients[0].parsed[0].foodContentsLabel %>
+    <% } else { %>
+    <% foodIngredientsLabel = foodName %>     
+<% }%> 
     <% foodName = foodName.toLowerCase() %>
     <% foodIngredientsLabel = foodIngredientsLabel.toLowerCase() %>
     <% let regex = /(\b[a-z](?!\s))/g; %>

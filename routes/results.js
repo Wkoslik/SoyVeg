@@ -47,7 +47,7 @@ router.get('/:id', (req, res) => {
     .then(response =>{
         let chosenOne = response.data;
         res.render('results/details', { chosenOne })
-        //res.send(chosenOne.healthLabels);
+        //res.send(chosenOne);
     })
 })
 

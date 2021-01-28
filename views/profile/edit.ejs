@@ -1,0 +1,16 @@
+<h2>Editing my profile information</h2>
+
+<form action="/profile/edit/<%= user.id %>?_method=PUT" method="POST">
+    <input type="hidden" name="id" value="<%= user.id %> ">
+    First Name: <input type="text" name="firstName" value="<%= user.firstName %>">
+    Last Name: <input type="text" name="lastName" value="<%= user.lastName %>">
+    Email Address: <input type="email" name="email" value="<%= user.email %>">
+    Age: <input type="number" name="age" value="<%= user.age %>">
+    Pronouns: <input type="text" name="pronouns" value="<%= user.pronouns %>">
+    Nutrition Preference: <input type="radio" id="vegan" name="nutritionPreference" value="Vegan" required>
+    <label for="vegan">Vegan</label><br>
+    <input type="radio" id="vegetarian" name="nutritionPreference" value="Vegetarian" required> 
+    <label for="vegetarian">Vegetarian</label><br>
+
+    <input type="submit">
+</form>

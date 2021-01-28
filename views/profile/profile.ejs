@@ -3,3 +3,12 @@
 <h3>Welcome to your PROFILE</h3>
 
 
+    <p>Name: <%= user.firstName %> <%= user.lastName %> </p>
+    <p>Email Address: <%= user.email %> </p>
+    <p>Age: <%= user.age %> </p>
+    <p>Pronouns: <%= user.pronouns %> </p>
+    <p>Nutrition Preference: <%= user.nutritionPreference %> </p>
+
+    <a href="/profile/edit/<%=user.id%>">Edit my information</a>
+</form>
+

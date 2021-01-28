@@ -41,7 +41,7 @@ router.post('/', (req, res) => {
 })
 
 
-//delete from favorites
+//delete from dislike
 router.delete('/:id', (req, res) => {
     db.user.findByPk(req.user.id).then(user => {
         db.dislikedrecipe.findByPk(req.body.id).then(recipe => {
