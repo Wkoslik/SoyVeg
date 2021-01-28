@@ -1,4 +1,3 @@
-//TODO remove res.send
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
@@ -6,15 +5,19 @@ const axios = require('axios');
 const db = require('../models');
 
 let searchTerm;
-//TODO update userPreference so that it references the user who is logged in
-let userPreference = `health=vegan`;
+let userPreference;
 
 //search for a food or recipe
 //TODO eliminate edamam limit?
 router.get('/', (req, res) => {
+    if(req.user.nutritionPreference == 'Vegan'){
+        userPreference = `health=vegan`;
+    } else{
+        userPreference = `health=vegan&health=vegetarian`;
+    }
+
     searchTerm = req.query.searchterm;
     let database = req.query.searchtype;
-    console.log(userPreference);
     if (database == 'food') { //IF SEARCHING FOR INGREDIENT
         axios.get(`https://api.edamam.com/api/food-database/v2/parser?ingr=${searchTerm}&app_id=${process.env.INGREDIENT_ID}&app_key=${process.env.INGREDIENT_KEY}&${userPreference}`)
             .then((response) => {
@@ -25,7 +28,6 @@ router.get('/', (req, res) => {
         axios.get(`https://api.edamam.com/search?q=${searchTerm}&app_id=${process.env.RECIPE_ID}&app_key=${process.env.RECIPE_KEY}&health=vegan&health=vegetarian`)
             .then((response) => {
                 let recipeResults = response.data.hits
-                //res.send(recipeResults)
                 res.render('results/reciperesults', { recipeResults })
             }).catch(err => console.log(err));
     }
@@ -46,7 +48,6 @@ router.get('/:id', (req, res) => {
         .then(response => {
             let chosenOne = response.data;
             res.render('results/details', { chosenOne })
-            //res.send(chosenOne);
         })
 })
 
@@ -57,14 +58,12 @@ router.get('/recipesincluding/:id', (req, res) => {
     axios.get(`https://api.edamam.com/search?q=${searchTerm}&app_id=${process.env.RECIPE_ID}&app_key=${process.env.RECIPE_KEY}&health=vegan&health=vegetarian`)
         .then((response) => {
             let recipeResults = response.data.hits
-            //res.send(recipeResults)
             res.render('results/reciperesults', { recipeResults })
         }).catch(err => console.log(err));
 })
 
 //get recipe details for a specific recipe
 router.get('/recipedetails/:id', (req, res) => {
-    //res.send(req.query);
     let searchUri = req.query.uri;
     let uriArr;
     let joinedUri;
@@ -81,13 +80,9 @@ router.get('/recipedetails/:id', (req, res) => {
         joinedUri = uriArr.join('');
     }
 
-    //console.log(searchUri);
-    //res.send(joinedUri);
-    // console.log(joinedUri);
     axios.get(`https://api.edamam.com/search?r=http%3A%2f%2fwww.edamam.com%2Fontologies%2fedamam.owl%23${joinedUri}&app_id=${process.env.RECIPE_ID}&app_key=${process.env.RECIPE_KEY}`)
         .then((response) => {
-            let recipeDetails = response.data[0]
-            //res.send(recipeDetails)
+            let recipeDetails = response.data[0];
             res.render('results/recipedetails', { recipeDetails })
         }).catch(err => console.log(err));
 })
