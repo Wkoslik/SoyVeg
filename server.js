@@ -18,14 +18,13 @@ app.use(methodOverride('_method'));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
 app.use(helmet({
-  contentSecurityPolicy: false,
-}
-));
+    contentSecurityPolicy: false,
+}));
 
 app.use(session({ //because of how this works, we have access to this session on ANY request
-  secret: process.env.SESSION_SECRET, //should be an ENV variable
-  resave: false, //forces resaving of the session when things have changed
-  saveUninitialized: true //stores the session even if we don't have anything saved
+    secret: process.env.SESSION_SECRET, //should be an ENV variable
+    resave: false, //forces resaving of the session when things have changed
+    saveUninitialized: true //stores the session even if we don't have anything saved
 }));
 
 //Init passport config must happen AFTER session config
@@ -35,26 +34,26 @@ app.use(flash()); //must happen after session config but before you try to use i
 
 //write custom middleware to access the user on every response
 app.use((req, res, next) => {
-  let alerts = req.flash();
-  console.log(alerts);
-  res.locals.alerts = alerts;
-  res.locals.currentUser = req.user;
-  next();
+    let alerts = req.flash();
+    console.log(alerts);
+    res.locals.alerts = alerts;
+    res.locals.currentUser = req.user;
+    next();
 })
 
 app.get('/', (req, res) => {
-  req.session.testVar = "FIRE";
-  if(req.user){
+    req.session.testVar = "FIRE";
+    if(req.user){
     res.render('index');
-  } else{
+    } else{
     res.render('auth/login');
-  }
-  
+    }
+
 });
 
 //TODO remove comments from around isLoggedIn
-app.get('/search', /*isLoggedIn,*/ (req,res)=>{
-  res.render('search');
+app.get('/search', /*isLoggedIn,*/ (req, res) => {
+    res.render('search');
 });
 
 //TODO remove comments from around isLoggedIn
@@ -68,6 +67,6 @@ app.use('/dislikerecipes', /*isLoggedIn,*/ require('./routes/dislikerecipes'));
 
 
 
-var server = app.listen(process.env.PORT || 3001, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3001}🎧`));
+var server = app.listen(process.env.PORT || 3001, () => console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3001}🎧`));
 
 module.exports = server;

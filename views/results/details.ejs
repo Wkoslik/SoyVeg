@@ -1,4 +1,5 @@
-<h1>DETAILS</h1>
+<div class="body fooddetails">
+
 <%//TODO ensure food label is pulling correctly for whether item is vegan or vegetarian%>
 
 <% let foodName = chosenOne.ingredients[0].parsed[0].food%>
@@ -23,10 +24,9 @@
     <% foodIngredientsLabel = foodIngredientsLabel.replace(regex, function(x){ %>
         <% return x.toUpperCase(); %>
     <% }); %>
-
-<h2>
-    <%= foodName %>
-</h2>
+<h1>The Deets on...</h1> 
+<h1><%= foodName %></h1>
+<div class="ingredientdetails">
 <% if (healthLabelVegan){ %>
     <%  healthLabel = 'Vegan' %>
     <% isVegan = true %>
@@ -78,5 +78,6 @@
 </form>
 
 
+</div>
 
-
+</div>

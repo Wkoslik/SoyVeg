@@ -1,5 +1,7 @@
+<div class="body recipestyles">
 <h1>fave ingredients</h1>
 
+<div class="listingthings">
 <ul>
     <% if(ingredient.length >0){ %>
     <% ingredient.forEach(ingredient => { %>
@@ -9,7 +11,6 @@
             <input type="hidden" name="quantity" value='1'>
             <input type="submit" name="foodLabel" value="<%= ingredient.name %> | <%= ingredient.healthLabel %>">
             </form>
-            </li>
         <form method="POST" action='/faveingredients/<%= ingredient.foodId %> ?_method=DELETE'>
             <input type="hidden" name="id" value="<%=ingredient.id%>">
             <input type="hidden" name="foodId" value="<%=ingredient.foodId%>">
@@ -20,7 +21,9 @@
         <li><%= 'There are no saved ingredients.' %></li>
     <% }; %>
 </ul>
+</div>
 
+<div class="search">
 <h3>I want to search for</h3>
 
 <form method=GET action="/results">
@@ -31,3 +34,6 @@
     <input type='text' name="searchterm">
     <input type='submit' value='search'>    
 </form>
+</div>
+
+</div>

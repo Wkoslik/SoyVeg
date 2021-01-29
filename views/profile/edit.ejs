@@ -1,4 +1,5 @@
-<h2>Editing my profile information</h2>
+<div class="body editprofile">
+<h1>Editing my profile information</h1>
 <% //TODO upload image? %>
 
 <form action="/profile/edit/<%= user.id %>?_method=PUT" method="POST">
@@ -15,3 +16,5 @@
 
     <input type="submit">
 </form>
+
+</div>

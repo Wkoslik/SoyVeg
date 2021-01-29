@@ -1,12 +1,28 @@
-<h2>Homepage</h2>
-<% //TODO change homepage so the login/signup page is the first thing to load %>
-<%= currentUser ? `Welcome ${currentUser.firstName}!` : 'There is no user' %>
+<div class="homepage-container">
+    <div class="homepage">
+        <h2>
+            <%= currentUser ? `Welcome ${currentUser.firstName}!` : `How did you get here without signing in? Get outta here!` %>
+        </h2>
 
+        <div class="search">
+            <h3>I want to search for...</h3>
 
-<ul>
-    <li><a href='/search'>Search</a></li>
-    <li><a href='/faveingredients'>Fave Ingredients</a></li>
-    <li><a href='/faverecipes'>Fave Recipes</a></li>
-    <li><a href='/dislikeingredients'>Ew Ingredients</a></li>
-    <li><a href='/dislikerecipes'>Ew Ingredients</a></li>
-</ul>
+            <form method=GET action="/results">
+                <select name="searchtype">
+        <option value="food" name="food">an Ingredient</option>
+        <option value="recipe" name="recipe">a Recipe</option>
+    </select>
+                <input type='text' name="searchterm">
+                <input type='submit' value='search'>
+            </form>
+        </div>
+
+        <h3>I want to view my...</h3>
+        <ul>
+            <li><a href='/faveingredients'>Fave Ingredients</a></li>
+            <li><a href='/faverecipes'>Fave Recipes</a></li>
+            <li><a href='/dislikeingredients'>Least Fave Ingredients</a></li>
+            <li><a href='/dislikerecipes'>Least Fave Recipes</a></li>
+        </ul>
+    </div>
+</div>

@@ -1,3 +1,4 @@
+<div class ="body recipedetails">
 <% let healthLabelVegan = recipeDetails.healthLabels.find(element => element == "Vegan"); %>
 <% let healthLabelVegetarian = recipeDetails.healthLabels.find(element => element == "Vegetarian"); %>
 <% let healthLabel; %>
@@ -17,7 +18,7 @@
 <h1><%= recipeDetails.label %></h1>
 
 <img src="<%= recipeDetails.image %> " alt="<%=recipeDetails.label %>">
-<p>Additional Details: <a href="<%=recipeDetails.url%>" target=_blank> <%= recipeDetails.source %> </a></p>
+<p>Recipe directions can be found at <a href="<%=recipeDetails.url%>" target=_blank> <%= recipeDetails.source %> </a></p>
 
 <p>Ingredients</p>
 <ul>
@@ -26,7 +27,6 @@
     <% }) %> 
 </ul>
 
-<p>Health Labels</p>
 <% if (healthLabelVegan){ %>
     <%  healthLabel = 'Vegan' %>
     <p><%= healthLabel %> </p>
@@ -37,7 +37,7 @@
     <% healthLabel = 'Item has not been rated vegetarian or vegan.'%>
     <p><%= healthLabel %> </p>
 <%} %>
-
+<div class="forms">
 <form method="POST" action="/faverecipes">
     <input type="hidden" name="name" value="<%= recipeDetails.label%>">
     <input type="hidden" name="recipeId" value="<%= recipeId %>">
@@ -54,3 +54,5 @@
     <input type="hidden" name="healthLabel" value="<%= healthLabel %>">
     <input type="submit" name="dislikedingredient" value="Save to dislikes">
 </form>
+</div>
+</div>

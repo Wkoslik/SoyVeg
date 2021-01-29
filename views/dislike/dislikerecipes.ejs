@@ -1,5 +1,7 @@
-<h1>Disliked recipes</h1>
+<div class="body recipestyles">
+<h1>Recipes I dislike</h1>
 
+<div class="listingthings">
 <ul>
     <% if(recipe.length >0){ %>
     <% recipe.forEach(recipe => { %>
@@ -7,7 +9,6 @@
             <input type="hidden" name="recipeId" value="<%= recipe.recipeId %>">
             <input type="submit" name="foodLabel" value="<%= recipe.name %> | <%= recipe.healthLabel %>">
             </form>
-            </li>
         <form method="POST" action='/dislikerecipes/<%= recipe.foodId %> ?_method=DELETE'>
             <input type="hidden" name="id" value="<%=recipe.id%>">
             <input type="hidden" name="foodId" value="<%=recipe.recipeId%>">
@@ -18,7 +19,9 @@
         <li><%= 'Really? You like everything? I call shenanigans. Let the hate flow through you.' %></li>
     <% }; %>
 </ul>
+</div>
 
+<div class="search">
 <h3>I want to search for</h3>
 
 <form method=GET action="/results">
@@ -29,3 +32,5 @@
     <input type='text' name="searchterm">
     <input type='submit' value='search'>    
 </form>
+</div>
+</div>

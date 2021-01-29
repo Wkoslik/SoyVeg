@@ -1,29 +1,36 @@
-<form action="/auth/signup" method="POST">
-  <div>
-    <label for="new-first-name">First Name</label>
-    <input id="new-first-name" type="text" name="firstName">
+<body class="loginsignuppage">
+    <div class="loginsignupform">
+        <form action="/auth/signup" method="POST">
+            <div class="signupform">
+                <div class="names">
+                    <label for="new-first-name">First Name</label>
+                    <input id="new-first-name" type="text" name="firstName">
 
-    <label for="new-last-name">Last Name</label>
-    <input id="new-last-name" type="text" name="lastName">
-  </div>
+                    <label for="new-last-name">Last Name</label>
+                    <input id="new-last-name" type="text" name="lastName">
+                </div>
 
-  <div>
-    <label for="new-email">Email</label>
-    <input id="new-email" type="email" name="email">
+                <div class="emailpw">
+                    <label for="new-email">Email</label>
+                    <input id="new-email" type="email" name="email">
 
-    <label for="new-password">Password</label>
-    <input id="new-password" type="password" name="password">
-  </div>
+                    <label for="new-password">Password</label>
+                    <input id="new-password" type="password" name="password">
+                </div>
 
-  <div>
-    <p>Diet Preference:</p>
+                <div class="nutritionpref">
+                    <span>Diet Preference:</span>
 
-    <input type="radio" id="vegan" name="nutritionPreference" value="vegan">
-    <label for="vegan">Vegan</label>
+                    <input type="radio" id="vegan" name="nutritionPreference" value="vegan">
+                    <label for="vegan">Vegan</label>
 
-    <input type="radio" id="vegetarian" name="nutritionPreference" value="vegetarian">
-    <label for="vegetarian">Vegetarian</label>
-  </div>
+                    <input type="radio" id="vegetarian" name="nutritionPreference" value="vegetarian">
+                    <label for="vegetarian">Vegetarian</label>
+                </div>
+            </div>
 
-  <input type="submit" value="Sign up">
-</form>
+            <input type="submit" value="Sign up">
+        </form>
+
+    </div>
+</body>
