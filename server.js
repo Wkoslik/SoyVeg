@@ -51,19 +51,17 @@ app.get('/', (req, res) => {
 
 });
 
-//TODO remove comments from around isLoggedIn
-app.get('/search', /*isLoggedIn,*/ (req, res) => {
+app.get('/search', isLoggedIn, (req, res) => {
     res.render('search');
 });
 
-//TODO remove comments from around isLoggedIn
 app.use('/auth', require('./routes/auth'));
-app.use('/profile', /*isLoggedIn,*/ require('./routes/profile'));
-app.use('/results', /*isLoggedIn,*/ require('./routes/results'));
-app.use('/faveingredients', /*isLoggedIn,*/ require('./routes/faveingredients'));
-app.use('/faverecipes', /*isLoggedIn,*/ require('./routes/faverecipes'));
-app.use('/dislikeingredients', /*isLoggedIn,*/ require('./routes/dislikeingredients'));
-app.use('/dislikerecipes', /*isLoggedIn,*/ require('./routes/dislikerecipes'));
+app.use('/profile', isLoggedIn, require('./routes/profile'));
+app.use('/results', isLoggedIn, require('./routes/results'));
+app.use('/faveingredients', isLoggedIn, require('./routes/faveingredients'));
+app.use('/faverecipes', isLoggedIn, require('./routes/faverecipes'));
+app.use('/dislikeingredients', isLoggedIn, require('./routes/dislikeingredients'));
+app.use('/dislikerecipes', isLoggedIn, require('./routes/dislikerecipes'));
 
 
 
