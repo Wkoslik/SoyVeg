@@ -43,12 +43,11 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
     req.session.testVar = "FIRE";
-    if(req.user){
-    res.render('index');
-    } else{
-    res.render('auth/login');
+    if (req.user) {
+        res.render('index');
+    } else {
+        res.render('auth/login');
     }
-
 });
 
 app.get('/search', isLoggedIn, (req, res) => {
@@ -65,6 +64,6 @@ app.use('/dislikerecipes', isLoggedIn, require('./routes/dislikerecipes'));
 
 
 
-var server = app.listen(process.env.PORT || 3001, () => console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3001}🎧`));
+var server = app.listen(process.env.PORT || 3000, () => console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
 
 module.exports = server;

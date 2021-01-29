@@ -1,7 +1,8 @@
 <div class="homepage-container">
     <div class="homepage">
         <h2>
-            <%= currentUser ? `Welcome ${currentUser.firstName}!` : `How did you get here without signing in? Get outta here!` %>
+            <%= currentUser ? `Welcome ${currentUser.firstName}!` : `How did you get here without signing in? Get outta
+                here!` %>
         </h2>
 
         <div class="search">
@@ -9,9 +10,9 @@
 
             <form method=GET action="/results">
                 <select name="searchtype">
-        <option value="food" name="food">an Ingredient</option>
-        <option value="recipe" name="recipe">a Recipe</option>
-    </select>
+                    <option value="food" name="food">an Ingredient</option>
+                    <option value="recipe" name="recipe">a Recipe</option>
+                </select>
                 <input type='text' name="searchterm">
                 <input type='submit' value='search'>
             </form>

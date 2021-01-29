@@ -1,7 +1,5 @@
 <div class="body fooddetails">
 
-<%//TODO ensure food label is pulling correctly for whether item is vegan or vegetarian%>
-
 <% let foodName = chosenOne.ingredients[0].parsed[0].food%>
 <% let healthLabelVegan = chosenOne.healthLabels.find(element => element === "VEGAN"); %>
 <% let healthLabelVegetarian = chosenOne.healthLabels.find(element => element === "VEGETARIAN"); %>
