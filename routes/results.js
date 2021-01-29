@@ -13,20 +13,23 @@ router.get('/', (req, res) => {
     if(req.user.nutritionPreference == 'Vegan'){
         userPreference = `health=vegan`;
     } else{
-        userPreference = `health=vegan&health=vegetarian`;
+        userPreference = `health=vegetarian`;
     }
-
+    console.log(req.user.nutritionPreference);
     searchTerm = req.query.searchterm;
     let database = req.query.searchtype;
     if (database == 'food') { //IF SEARCHING FOR INGREDIENT
         axios.get(`https://api.edamam.com/api/food-database/v2/parser?ingr=${searchTerm}&app_id=${process.env.INGREDIENT_ID}&app_key=${process.env.INGREDIENT_KEY}&${userPreference}`)
             .then((response) => {
+                console.log(` !!!!!!!!!!!!!!!!!!!!! ${userPreference}`);
                 let foodResults = response.data.hints;
+                //res.send(foodResults);
                 res.render('results/foodresults', { foodResults });
             }).catch(err => console.log(err));
     } else { //IF SEARCHING FOR RECIPE
-        axios.get(`https://api.edamam.com/search?q=${searchTerm}&app_id=${process.env.RECIPE_ID}&app_key=${process.env.RECIPE_KEY}&health=vegan&health=vegetarian`)
+        axios.get(`https://api.edamam.com/search?q=${searchTerm}&app_id=${process.env.RECIPE_ID}&app_key=${process.env.RECIPE_KEY}&${userPreference}`)
             .then((response) => {
+                console.log(` !!!!!!!!!!!!!!!!!!!!! ${userPreference}`);
                 let recipeResults = response.data.hits
                 res.render('results/reciperesults', { recipeResults })
             }).catch(err => console.log(err));
@@ -83,6 +86,7 @@ router.get('/recipedetails/:id', (req, res) => {
     axios.get(`https://api.edamam.com/search?r=http%3A%2f%2fwww.edamam.com%2Fontologies%2fedamam.owl%23${joinedUri}&app_id=${process.env.RECIPE_ID}&app_key=${process.env.RECIPE_KEY}`)
         .then((response) => {
             let recipeDetails = response.data[0];
+            //res.send(recipeDetails);
             res.render('results/recipedetails', { recipeDetails })
         }).catch(err => console.log(err));
 })

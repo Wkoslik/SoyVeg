@@ -1,3 +1,4 @@
+<div class="widebody">
 <div class ="body recipedetails">
 <% let healthLabelVegan = recipeDetails.healthLabels.find(element => element == "Vegan"); %>
 <% let healthLabelVegetarian = recipeDetails.healthLabels.find(element => element == "Vegetarian"); %>
@@ -37,6 +38,7 @@
     <% healthLabel = 'Item has not been rated vegetarian or vegan.'%>
     <p><%= healthLabel %> </p>
 <%} %>
+
 <div class="forms">
 <form method="POST" action="/faverecipes">
     <input type="hidden" name="name" value="<%= recipeDetails.label%>">
@@ -54,5 +56,6 @@
     <input type="hidden" name="healthLabel" value="<%= healthLabel %>">
     <input type="submit" name="dislikedingredient" value="Save to dislikes">
 </form>
+</div>
 </div>
 </div>

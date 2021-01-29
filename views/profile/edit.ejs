@@ -1,20 +1,36 @@
-<div class="body editprofile">
-<h1>Editing my profile information</h1>
-<% //TODO upload image? %>
+<div class="widebody">
+    <div class="body editprofile">
+        <h1>Editing my profile information</h1>
+        <% //TODO upload image? %>
 
-<form action="/profile/edit/<%= user.id %>?_method=PUT" method="POST">
-    <input type="hidden" name="id" value="<%= user.id %> ">
-    First Name: <input type="text" name="firstName" value="<%= user.firstName %>">
-    Last Name: <input type="text" name="lastName" value="<%= user.lastName %>">
-    Email Address: <input type="email" name="email" value="<%= user.email %>">
-    Age: <input type="number" name="age" value="<%= user.age %>">
-    Pronouns: <input type="text" name="pronouns" value="<%= user.pronouns %>">
-    Nutrition Preference: <input type="radio" id="vegan" name="nutritionPreference" value="Vegan" required>
-    <label for="vegan">Vegan</label><br>
-    <input type="radio" id="vegetarian" name="nutritionPreference" value="Vegetarian" required> 
-    <label for="vegetarian">Vegetarian</label><br>
+            <form action="/profile/edit/<%= user.id %>?_method=PUT" method="POST">
+                <input type="hidden" name="id" value="<%= user.id %> ">
+                <div>
+                    <label>First Name:</label><input type="text" name="firstName" value="<%= user.firstName %>">
+                </div>
+                <div>
+                    <label>Last Name: </label><input type="text" name="lastName" value="<%= user.lastName %>">
+                </div>
+                <div>
+                    <label>Email Address: </label><input type="email" name="email" value="<%= user.email %>">
+                </div>
+                <div>
+                    <label>Age: </label><input type="number" name="age" value="<%= user.age %>">
+                </div>
+                <div>
+                    <label>Pronouns: </label><input type="text" name="pronouns" value="<%= user.pronouns %>"><br>
+                </div>
+                <div>
+                    <label>Nutrition Preference: </label><input type="radio" id="vegan" name="nutritionPreference"
+                        value="Vegan" required>
+                    <label for="vegan">Vegan</label>
 
-    <input type="submit">
-</form>
+                    <input type="radio" id="vegetarian" name="nutritionPreference" value="Vegetarian" required>
+                    <label for="vegetarian">Vegetarian</label>
 
+                </div>
+                <input type="submit">
+            </form>
+
+    </div>
 </div>

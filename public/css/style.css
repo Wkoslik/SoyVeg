@@ -38,6 +38,10 @@ input[type=submit]:hover {
     cursor: pointer;
 }
 
+nav ul{
+    padding: 0;
+    text-align: center;
+}
 nav ul li {
     text-decoration: none;
     display: inline-block;
@@ -47,6 +51,27 @@ nav ul li {
 nav {
     display: flex;
     justify-content: center;
+}
+
+nav a, nav a:visited{
+    color: whitesmoke;
+    transition: 500ms ease-in-out;
+    font-size: 22px;
+    padding: 8px;
+    margin: 4px;
+    border-radius: 10px;
+}
+
+a{
+    font-family: 'Architects daughter', cursive;
+    text-decoration: none
+}
+
+nav a:hover{
+    font-size: 24px;
+    color: #236946;
+    background-color: whitesmoke;
+    
 }
 
 #logo {
@@ -68,7 +93,7 @@ nav {
     margin-right: 8px;
 }
 
-h1 {
+h1, h2, h3 {
     color: whitesmoke;
     font-family: 'Architects Daughter', cursive;
 }
@@ -121,7 +146,7 @@ footer i {
 .loginsignupform {
     height: 400px;
     width: 600px;
-    margin: 0 auto;
+    margin: 16px auto;
     background-color: rgba(147, 233, 190, .8);
     border-radius: 10px;
     display: flex;
@@ -160,7 +185,7 @@ footer i {
     color: black;
 }
 
-.signup a:visited {
+a:visited {
     color: #236946;
 }
 
@@ -200,6 +225,20 @@ footer i {
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.homepage a{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 500ms ease-in-out;
+    border-radius: 10px;
+}
+.homepage a:hover{
+    background-color: #236946;
+    color: whitesmoke
 }
 
 .homepage ul {
@@ -268,9 +307,6 @@ h2 {
     flex-wrap: wrap;
 }
 
-.results h3{
-    color: whitesmoke
-}
 
 .ingredientdetails{
     background-color: rgba(245,245,245, .8);
@@ -398,4 +434,32 @@ h2 {
 
 .profile{
     padding: 16px;
+}
+
+.widebody{
+    background-color: whitesmoke;
+    margin: 18px 0;
+    min-height: 500px;
+}
+
+.editprofile, .results{
+    background-color: #93e9be;
+    height: 100%;
+    text-align: center;
+    margin: 16px auto;
+}
+
+.editprofile form div{
+    text-align: left;
+    padding: 8px;
+    width: 80%;
+    margin: 16px auto;
+}
+
+.editprofile form div label{
+    padding: 8px;
+}
+
+.results h3, .search h3, .reciperesults h1{
+    color: black;
 }
