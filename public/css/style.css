@@ -463,3 +463,9 @@ h2 {
 .results h3, .search h3, .reciperesults h1{
     color: black;
 }
+
+#edamam-badge{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
